@@ -1,0 +1,22 @@
+[build-system]
+requires = ['setuptools']
+build-backend = 'setuptools.build_meta' # PEP 517
+
+[project]
+name = "dotenv-hook"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = []
+
+[tool.setuptools.packages.find]
+where = ['src']
+
+[dependency-groups]
+dev = [
+    "pre-commit>=4.5.1",
+]
+
+[project.scripts]
+detect-dotenv = "dotenv_hook.__main__:main"
