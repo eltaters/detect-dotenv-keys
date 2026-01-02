@@ -1,5 +1,5 @@
 - id: detect-dotenv
-  name: detect variables in dotenv template
+  name: detect variables in dotenv 
   description: detects the presence of sensible variables in non-ignored .env files.
   entry: detect-dotenv
   language: python
