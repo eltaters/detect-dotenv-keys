@@ -5,9 +5,9 @@ build-backend = 'setuptools.build_meta' # PEP 517
 [project]
 name = "dotenv-hook"
 version = "0.1.0"
-description = "Add your description here"
+description = "Pre-commit hook to check for sensitive keys in dotenv files."
 readme = "README.md"
-requires-python = ">=3.13"
+requires-python = ">=3.10"
 dependencies = []
 
 [tool.setuptools.packages.find]
