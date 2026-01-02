@@ -10,7 +10,7 @@ def main(argv: Sequence[str] | None = None) -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("filenames", nargs="*", help="Filenames to check")
     args = parser.parse_args(argv)
-    env_pattern = re.compile(r"(^|/)(.*\.)?env(\..+)?$")
+    env_pattern = re.compile(r"(^|/)(.*\.)env(\..+)?$")
 
     files: list[str] = [f for f in args.filenames if env_pattern.search(f)]
     valid_keys: list[str] = ["", '""', "''"]
