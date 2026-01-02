@@ -2,6 +2,7 @@ from __future__ import annotations
 from pathlib import Path
 
 import argparse
+import re
 from collections.abc import Sequence
 
 
@@ -9,8 +10,9 @@ def main(argv: Sequence[str] | None = None) -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("filenames", nargs="*", help="Filenames to check")
     args = parser.parse_args(argv)
+    env_pattern = re.compile(r"(^|/)(.*\.)?env(\..+)?$")
 
-    files: list[str] = [f for f in args.filenames if f.startswith(".env")]
+    files: list[str] = [f for f in args.filenames if env_pattern.search(f)]
     valid_keys: list[str] = ["", '""', "''"]
 
     detected_keys: dict[str, list[str]] = {}
@@ -21,7 +23,7 @@ def main(argv: Sequence[str] | None = None) -> int:
             value = var[len(key) + 1 :]
 
             if value not in valid_keys:
-                detected_keys.setdefault(file.name, []).append(key)
+                detected_keys.setdefault(str(file), []).append(key)
 
     print("The following variables contain set values")
     for file, keys in detected_keys.items():
